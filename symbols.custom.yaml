@@ -1,0 +1,3 @@
+# 不放部署日志会提示丢失本文件,如下所提示:
+# W0821 20:53:02.425098 246812672 config_data.cc:62] nonexistent config file '/Users/qidizi/Library/Rime/symbols.custom.yaml'.
+patch:

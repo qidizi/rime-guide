@@ -1,0 +1,41 @@
+# 五笔拼音输入方案自定义
+patch:
+
+  #  # 行为翻转
+  #  reverse_lookup:
+  #    # 输入特殊字符,就直接使用这个字典来解析
+  #    dictionary: pinyin_simp
+  #    # 以某键码开始,就按拼音(或其它)解析后续键码,如`py按拼音解析是"拼音";而按五笔可能是"社"
+  #    # 这可能对于不会五笔时,而想快捷用拼音时提供方法;暂禁用
+  #    prefix: false
+  #    # suffix: "'"
+  #    # tips: "〔拼音〕
+
+
+  switches:
+    #  html需要代码正确+文案准确,所以此时需要[中文+全角+中文符号,英文+半角+英文符号]一键切换配置
+    #  如果说只有一种五笔输入方案话,目前不知道配置方法,却可以使用一个英文+五笔2个方案达到
+    #
+    # 英文状态
+    - name: ascii_mode
+      reset: 1
+      # 对应描述,0对应左,1对应右,下同
+      states: ["中文", "英文"]
+    # 全/半角
+    # 使用全角输入的场景非常少可以不使用本特性
+    - name: full_shape
+      reset: 0
+      states: ["半角", "全角"]
+    # 英文符号
+    - name: ascii_punct
+      reset: 0
+      states: ["。，","．，"]
+    # 简繁
+    - name: simplification
+      # 初始是简写
+      reset: 1
+      states: ["繁体","简体"]
+    # 常用字符集或扩展
+    - name: extended_charset
+      reset: 1
+      states: ["常用字符集", "扩展字符集"]

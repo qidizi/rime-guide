@@ -1,0 +1,166 @@
+# 全局自定义配置
+
+# 在ta人基础上打补丁
+patch:
+
+  # 输入法方案，比如五笔与拼音
+  schema_list:
+    # 五笔拼音
+    - schema: wubi_pinyin
+    # 拼音
+    #- schema: pinyin
+
+  # 显示几个候选字,不要超出10个，否则序号重复，无法使用数字选择了
+  "menu/page_size": 10
+
+  # 可用的按鍵有 Caps_Lock, Shift_L, Shift_R, Control_L, control_R
+  # Mac 系統上的鼠鬚管不能區分左、右，因此只有對 Shift_L, Control_L 的設定起作用
+  #
+  # 已輸入編碼時按切換鍵，可以進一步設定輸入法中西文切換的形式。
+  # 可選的臨時切換策略有三：
+  # inline_ascii 在輸入法的臨時西文編輯區內輸入字母、數字、符號、空格等，回車上屏後自動復位到中文
+  # commit_text 已輸入的候選文字上屏並切換至西文輸入模式
+  # commit_code 已輸入的編碼字符上屏並切換至西文輸入模式
+  # 設爲 noop，屏蔽該切換鍵
+  #
+  # 如果要把 Caps Lock 設爲只改變字母的大小寫而不做中西文切換，可將 Caps_Lock 對應的切換方式設爲 noop
+
+  # 如果要以 Caps Lock 切換到西文模式，默認輸出小寫字母，請置 ascii_composer/good_old_caps_lock: false
+
+  # 如果要以 Caps Lock 切換到西文模式，默認輸出大寫字母，請使用以下設置：
+
+  # 中英切换热键
+  ascii_composer:
+    # 大写灯亮后输出大写
+    # 经过测试，false确实没有效果，同见该操作者讨论  https://gist.github.com/lotem/2981316#gistcomment-1772473
+    good_old_caps_lock: true
+    switch_key:
+      #  可用的按鍵有 Caps_Lock, Shift_L, Shift_R, Control_L, control_R
+      Caps_Lock: noop
+      Control_L: noop
+      Control_R: noop
+      Eisu_toggle: noop
+      Shift_L: clear
+      Shift_R: noop
+
+
+
+  "key_binder/bindings":
+    # 按键影射也就是组合键达到其它用途，如按ctrl+p相当于按了向上箭头键；
+    # when: has_menu 有候选列表时;toggle: full_shape状态转换;
+    # 一键切换到某个输入方案，select后面跟的是方案的ｉｄ
+    # 一键切换到中文
+    #- {accept: "Control+Shift+F12", select: wubi_pinyin, when: always}
+    # 切换到下个输入方案
+    #- {accept: "Control+Shift+F12", select: .next, when: always}
+
+    # accept与send可用按键 https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E4%B8%83%E5%85%B6%E5%AE%83
+
+    # 左右箭头影射成翻页
+    - {accept: "Left", send: Page_Up, when: has_menu}
+    - {accept: "Right", send: Page_Down, when: has_menu}
+
+    # 切换全角
+    - {accept: "Control+Alt+1", toggle: full_shape, when: always}
+    # 切换中英符号
+    - {accept: "Control+Alt+2", toggle: ascii_punct, when: always}
+
+
+
+
+  # 按键或组合候选,首个默认上屏
+  punctuator:
+    # 空格键顶字;看代码好像是在中文状态下如果true,就算下方放了空格有对应关系也不解析
+    # use_space: true
+
+    # ".": "中国" 与 ".": {commit: "中国"} 作用相同,都是按.键立刻上屏"中国"
+    # {}当同时出现piar与commit时,commit优先
+    # pair是按首次时出现左边,再按出现右边,注意它并非判断你输入框中前一个字符来取另一半,而是程序上回记录来判断
+    # ["a","b"] 是出现候选来选择了
+    # 注意如果只有一个对应关系，不要使用[]否则也会出现候选需要使用空格上屏
+
+
+    # 它必须有值,否则部署warning日志提示如下:
+    # W0821 20:45:39.305408 328689088 punctuator.cc:32] missing punctuation mapping.
+    # 全角状态时，按对应键候选;全角场景非常少,因为这时英文也变成全角了很难看
+    full_shape:
+      # 占位用,否则提示值不存在
+      .: .
+
+    # 它必须有值,否则部署warning日志提示如下:
+    # W0821 20:45:39.305408 328689088 punctuator.cc:32] missing punctuation mapping.
+    # 半角时，不要做任何转化，比如想在半角时输出全角符号
+    half_shape:
+      "!": "！"
+      "\"": ["“", "”"]
+      "#": "＃"
+      "$": "¥"
+      "%": "％"
+      "&": "＆"
+      "'": ["‘", "’"]
+      "(": "（"
+      ")": "）"
+      "*": "＊"
+      "+": "＋"
+      ",": "，"
+      "-": "－"
+      .: "。"
+      # 需要用它做扩展符号前缀，必须要写成数组形式才能显示扩展候选面板
+      "/": ["÷"]
+      ":": "："
+      ";": "；"
+      "<": "《"
+      "=": "＝"
+      ">": "》"
+      "?": "？"
+      "@": "＠"
+      "[": "【"
+      "\\": "、"
+      "]": "】"
+      "^": "……"
+      _: "——"
+      "`": "｀"
+      "{": "〖"
+      "|": "¦"
+      "}": "〗"
+      "~": "～"
+
+    # 扩展符号，或叫快捷输入
+    # 假设扩展总是以/开头那么上方的half_shape或是full_shape必须要设置成/:[/]数组格式，否则没有效果
+    # 估计逻辑上处理是只有这样才会hold住/然后加后续字符才能出现扩展候选列表
+    # 需要与recognizer/patterns/punct配合
+    symbols:
+      "/0": ["〇", "零", "₀", "⁰", "⓪", "⓿", "０"]
+
+  # 在中文+启用中文符号状态下生效
+  recognizer:
+    # 正则
+    patterns:
+      # 有＠就当email解析不再出现中文候选
+      email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
+      # 符合这个格式,就会解析punctuator/symbols中关系;假定自定规则是以/开始;
+      # ！！！！！要留意的是，假如若设定/01就是表情很坑的一点是
+      punct: "^/[A-Za-z0-9]+$"
+      # 符合这个规则就找上级方案，比如五笔是依赖拼音的，这时想让键码按拼音字典解析，完全跳过五笔
+      # 就以这个格式开头；同时见对应schema中reverse_lookup配置
+      reverse_lookup: "`[a-z]*'?$"
+      # 如果以大写字母开头，后面字符不再找字典里中文了，不出候选了，这时空格与回车上屏字符相同
+      uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
+      # 符合下列规则就当成一个url，不再找字典中文
+      url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
+
+  switcher:
+    # 显示开关状态面板时，光标位置标题
+    caption: "开关状态"
+
+    # 类似 中/全/。或 中文/全角/。，
+    # 开关收起成为一行
+    fold_options: false
+    # 仅显示开关首字，如"全角"只显示"全"
+    abbreviate_options: false
+    # 开关收起成一行时分隔符
+    option_list_separator: "／"
+
+    # 显示开关状态面板热键
+    hotkeys:
+      - F4

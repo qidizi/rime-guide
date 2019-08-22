@@ -1,0 +1,60 @@
+patch:
+  # 针对指定应用设置
+  app_options:
+    # 如
+#    com.apple.Terminal:
+#      ascii_mode: true
+#      no_inline: true
+    # 清空不设置
+
+
+  # 我的配色方案
+  preset_color_schemes:
+    qidizi:
+      #author: "作者"
+      #name: "配色方案名"
+      # 注意色值不支持white之类，起码支持0xffffff（不区分大小写）
+      # 背景色
+      back_color: 0xFFFFFF
+      border_color: 0xE2E2E2
+      # 候选面板未选中字色
+      candidate_text_color: 0x000000
+      # 中英切换提示，或候选中字后跟的键码色如"拼音 py"中py
+      comment_text_color: 0x6D6D6D
+
+      # 候选选中的背景
+      hilited_candidate_back_color: 0xCE7539
+      # 候选选中的字色
+      hilited_candidate_text_color: 0xFFFFFF
+
+      #下方在mac上并没有效果
+      hilited_back_color: 0xFFFFFF
+      hilited_comment_text_color: 0xEBC6B0
+      hilited_text_color: 0x000000
+      text_color: 0x666666
+
+  style:
+    # 字体大小
+    font_point: 22
+    # 候选字序号大小
+    label_font_point: 18
+    # 字体
+    font_face: "Menlo"
+    # 候选字横向，默认是竖向
+    horizontal: false
+    # 键码跟随光标，默认false是出现在修改面板中
+    inline_preedit: true
+    # 候选边距是靠这个来控制，并非spacing
+    corner_radius: 10
+    # 配色方案名,内置提供了几个像google之类
+    color_scheme: qidizi
+    # 候选字上下行之间空白
+    line_spacing: 0
+    # 不明用途
+#    spacing: 10
+#    border_height: 5
+#    border_width: 5
+#    us_keyboard_layout: true
+
+
+
