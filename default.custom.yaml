@@ -48,6 +48,7 @@ patch:
   "key_binder/bindings":
     # 按键影射也就是组合键达到其它用途，如按ctrl+p相当于按了向上箭头键；
     # when: has_menu 有候选列表时;toggle: full_shape状态转换;
+    # accept: "Release+Shift" 可以通过加前缀 Release改变绑定时机是按下还是放开时触发
     # 一键切换到某个输入方案，select后面跟的是方案的ｉｄ
     # 一键切换到中文
     #- {accept: "Control+Shift+F12", select: wubi_pinyin, when: always}
@@ -164,3 +165,12 @@ patch:
     # 显示开关状态面板热键
     hotkeys:
       - F4
+
+    save_options:
+      - full_shape
+      - ascii_punct
+      - simplification
+      - extended_charset
+      - zh_hant
+      - zh_hans
+      - zh_hant_tw

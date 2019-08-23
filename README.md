@@ -156,7 +156,7 @@ linux、mac os等编译出直接下载运行安装就能使用的输入法，每
 * 进入配置目录：`cd ～/Library/Rime`  
 * 不需要其它文件干扰我测试，清空我的配置目录 `rm -ri *`  
 * 克隆我的配置到配置目录：`git clone 我的项目地址`  
-* 克隆五笔拼音方案相关文件：`/Library/Input\ Methods/Squirrel.app/Contents/MacOS/rime-install wubi pinyin-simp` 
+* 克隆五笔拼音方案相关文件：`/Library/Input\ Methods/Squirrel.app/Contents/MacOS/rime-install wubi pinyin-simp`,`rime-install`其实是一个bash shell文件  
 * 给每个带schema.yaml的文件加上自定义文件，假设是`pinyin_simp.schema.yaml`，就创建`pinyin_simp.custom.yaml`，
 同时给这个文件写上一行`patch:`，这样日志中才不会出现`找不到某某自定义文件的提示｀,我已做,除非有新schema文件出现,不做也可以不影响使用,但是会
 在log中出现影响调试  
@@ -173,7 +173,7 @@ linux、mac os等编译出直接下载运行安装就能使用的输入法，每
 * 研究build目录
 * 试用输入 
 
-## 只有五笔拼音最官方配置  
+## 只有五笔拼音最初官方配置  
 
 * 进入配置目录：`cd ～/Library/Rime`  
 * 不需要其它文件干扰我测试，清空我的配置目录 `rm -ri *`  
@@ -210,4 +210,13 @@ build下的squirrel.yaml，就属于mac发行版本专有名字，其它系统�
 
 其它参考 https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
 
+
+## 一些问题
+
+* 休眠后，mac的IDEA没有中文输入，也没有了部署等菜单，但是切换到其它应用却正确~~(未能重现)~~
+按照`squirrel`总结的处理方式，退出当前用户重新登录，恢复正常。
+下回再现可尝试通过`活动监视器`找到`鼠鬚管`强制结束，它会自动重启并提示部署完成，看看能否解决。
+
+
+  
 

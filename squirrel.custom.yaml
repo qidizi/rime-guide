@@ -1,11 +1,14 @@
+# 这个文件的特性是发行作者实现的，并非librime中特性，所以，不同的发行版本，可能支持不同
+# 这个文件是mac发行版本使用的
+
 patch:
   # 针对指定应用设置
   app_options:
-    # 如
-#    com.apple.Terminal:
-#      ascii_mode: true
-#      no_inline: true
-    # 清空不设置
+  # 如
+  #    com.apple.Terminal:
+  #      ascii_mode: true
+  #      no_inline: true
+  # 清空不设置
 
 
   # 我的配色方案
@@ -38,8 +41,36 @@ patch:
     font_point: 22
     # 候选字序号大小
     label_font_point: 18
-    # 字体
-    font_face: "Menlo"
+
+
+    # 有时发现候选列表中出现一个个带框的问号，有可能是系统缺少显示该字符的字体，可以安装号称包含全全部字符的字体安装后选用
+    # https://zh.osdn.net/projects/hanazono-font/releases/ “花园明朝”官方网址
+    # 建议从 https://pkgs.org/download/ttf-hanazono 一直点下去找到类似`Binary Package	ttf-hanazono-20170904-3-any.pkg.tar.xz`
+    # mac 上使用`tar -vvvxf ttf-hanazono-20170904-3-any.pkg.tar.xz`解压，直接点击解不开，好像是使用xz打包的
+    # 会在当前目录下释放出，双击安装就能使用
+    #    usr/share/fonts/TTF/HanaMinA.ttf
+    #    usr/share/fonts/TTF/HanaMinB.ttf
+    # 关于2个字体说明
+    #    花園明朝A（HanaMinA.ttf）
+    #    51,991字
+    #
+    #    非漢字
+    #    CJK統合漢字（URO、URO+、Ext-A）
+    #    CJK互換漢字（補助を含む）およびその正規化符号位置
+    #    JIS X 0213:2004収録の漢字
+    #    IVD（およびSIPのベースグリフ）
+    #    通用規範漢字表（通用规范汉字表）収録の漢字
+    #    HKSCS（香港増補字符集）収録の漢字
+    #    台湾中央研究院CDP外字
+    #    花園明朝B（HanaMinB.ttf）
+    #    60,317字
+    #
+    #    CJK統合漢字（Ext.B、Ext.C、Ext.D、Ext.E、Ext.F）
+
+    # 字体,多个使用逗号分开；苹果Menlo与花园明朝ab
+    #（需要按上面方法安装，这个字体显示效果很差但是很全，开关开启CKJ全集字符后无乱码）
+    # 注意：使用花园明朝字体后候选并不一定是上屏字符，比如上屏“将”，候选显示不同
+    font_face: "Menlo,HanaMinA,HanaMinB"
     # 候选字横向，默认是竖向
     horizontal: false
     # 键码跟随光标，默认false是出现在修改面板中
