@@ -70,7 +70,7 @@ patch:
     # 字体,多个使用逗号分开；苹果Menlo与花园明朝ab
     #（需要按上面方法安装，这个字体显示效果很差但是很全，开关开启CKJ全集字符后无乱码）
     # 注意：使用花园明朝字体后候选并不一定是上屏字符，比如上屏“将”，候选显示不同
-    font_face: "Menlo,HanaMinA,HanaMinB"
+    font_face: "Menlo"  #,HanaMinA,HanaMinB"
     # 候选字横向，默认是竖向
     horizontal: false
     # 键码跟随光标，默认false是出现在修改面板中

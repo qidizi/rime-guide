@@ -53,3 +53,8 @@ patch:
 #      # 中英切换
 #      - ascii_composer
 #      # 與matcher搭配，處理符合特定規則的輸入碼，如網址、反查等tags
+
+  # 是否4码顶字上屏,不设置或是足够长
+  "speller/max_code_length": 30
+  # 禁用用户词库达到禁用调频,同时自动造词也无效了
+  "translator/enable_user_dict": false
