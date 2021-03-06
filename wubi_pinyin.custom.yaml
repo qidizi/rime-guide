@@ -43,6 +43,7 @@ patch:
 
     # 中日韩常用字符集或全集
     - name: extended_charset
+    # 常用字符集,但还是有非常多不常用的字符
       reset: 0
       states: ["常用字符集", "扩展字符集"]
 
